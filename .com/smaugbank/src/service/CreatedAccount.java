@@ -1,9 +1,9 @@
 package service;
 
 import domain.CustomerAccount;
-import domain.ienum.EnumBank;
+import domain.ienum.EnumCoinType;
 
 public interface CreatedAccount {
     
-    CustomerAccount create(EnumBank banck);
+    CustomerAccount create(EnumCoinType banck);
 }

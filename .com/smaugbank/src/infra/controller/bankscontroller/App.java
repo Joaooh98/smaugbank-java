@@ -1,4 +1,4 @@
-package controller;
+package infra.controller.bankscontroller;
 
 import java.util.Scanner;
 
