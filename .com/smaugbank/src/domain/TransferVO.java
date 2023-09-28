@@ -2,16 +2,16 @@ package domain;
 
 import java.time.LocalDateTime;
 
-public class Transfer {
+public class TransferVO {
     
     private LocalDateTime createdTransfer;
 
-    public Transfer(final LocalDateTime createdTransfer){
+    public TransferVO(final LocalDateTime createdTransfer){
         this.createdTransfer = createdTransfer != null ? createdTransfer : LocalDateTime.now();
     }
 
     public LocalDateTime getValue() {
         return createdTransfer;
     }
-
+    
 }

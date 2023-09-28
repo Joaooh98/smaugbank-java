@@ -8,7 +8,7 @@ import domain.ienum.EnumCoinType;
 public class CustomerAccount {
 
     private Customer customer;
-    
+
     private String agencia;
 
     private String conta;
@@ -22,11 +22,10 @@ public class CustomerAccount {
     private EnumCoinType coitType;
 
     private BigDecimal currentBalance;
-
-    private Transfer createdTransfer;
+    
 
     public CustomerAccount(Customer customer, String agencia, String conta, String userClient, String passwordClient,
-            EnumBank bank, EnumCoinType coitType, BigDecimal currentBalance, Transfer createdTransfer) {
+            EnumBank bank, EnumCoinType coitType, BigDecimal currentBalance) {
         this.customer = customer;
         this.agencia = agencia;
         this.conta = conta;
@@ -35,7 +34,6 @@ public class CustomerAccount {
         this.bank = bank;
         this.coitType = coitType;
         this.currentBalance = currentBalance;
-        this.createdTransfer = createdTransfer;
     }
 
     public Customer getCustomer() {
@@ -102,14 +100,5 @@ public class CustomerAccount {
         this.currentBalance = currentBalance;
     }
 
-    public Transfer getCreatedTransfer() {
-        return createdTransfer;
-    }
-
-    public void setCreatedTransfer(Transfer createdTransfer) {
-        this.createdTransfer = createdTransfer;
-    }
-
     
-
 }
