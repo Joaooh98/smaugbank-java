@@ -4,60 +4,62 @@ import domain.ienum.utils.EnumUtil;
 
 public enum EnumBank implements Ienum{
     
-    HSBC("HSBC HOLDINGS PLC", "1", "REINO UNIDO"),
-    BARCLAYS("BARCLAYS", "2", "REINO UNIDO"),
-    STANDARD("STANDARD CHARTERED PLC", "3", "REINO UNIDO"),
-    LLOYDS("LLOYDS BANKING GROUP", "4", "REINO UNIDO"),
-    NATWEST("NATWEST GROUP PLC", "5", "REINO UNIDO"),
-    CYBG("CYBG PLC", "6", "REINO UNIDO"),
-    SCOTLAND("BANK OF SCOTLAND", "7", "REINO UNIDO"),
-    TSB("TSB BANKING GROUP PLC", "8", "REINO UNIDO"),
-    METRO("METRO BANK PLC", "9", "REINO UNIDO"),
+    HSBC("HSBC HOLDINGS PLC", "REINO UNIDO",0),
+    BARCLAYS("BARCLAYS", "REINO UNIDO",2),
+    STANDARD("STANDARD CHARTERED PLC", "REINO UNIDO",3),
+    LLOYDS("LLOYDS BANKING GROUP", "REINO UNIDO",4),
+    NATWEST("NATWEST GROUP PLC", "REINO UNIDO",5),
+    CYBG("CYBG PLC", "REINO UNIDO",6),
+    SCOTLAND("BANK OF SCOTLAND", "REINO UNIDO",7),
+    TSB("TSB BANKING GROUP PLC", "REINO UNIDO",8),
+    METRO("METRO BANK PLC", "REINO UNIDO",9),
 
-    BANCODOBRASIL("BANCO DO BRASIL", "Brasil", "BRAZIL"),
-    CAIXA("CAIXA ECONÔMICA FEDERAL", "Brasil", "BRAZIL"),
-    UNIBANCO("ITAÚ UNIBANCO", "Brasil", "BRAZIL"),
-    BRADESCO("BANCO BRADESCO", "Brasil", "BRAZIL"),
-    SANTANDERBRASIL("SANTANDER BRASIL", "Brasil", "BRAZIL"),
-    VOTORANTIM("BANCO VOTORANTIM", "Brasil", "BRAZIL"),
-    BTG("BANCO BTG PACTUAL", "Brasil", "BRAZIL"),
-    BANRISUL("BANRISUL", "Brasil", "BRAZIL"),
-    SAFRA("BANCO SAFRA", "Brasil", "BRAZIL"),
-    INTER("BANCO INTER", "Brasil", "BRAZIL"),
+    BANCODOBRASIL("BANCO DO BRASIL", "BRAZIL",0),
+    CAIXA("CAIXA ECONÔMICA FEDERAL", "BRAZIL",1),
+    UNIBANCO("ITAÚ UNIBANCO", "BRAZIL",2),
+    BRADESCO("BANCO BRADESCO", "BRAZIL",3),
+    SANTANDERBRASIL("SANTANDER BRASIL", "BRAZIL",4),
+    VOTORANTIM("BANCO VOTORANTIM", "BRAZIL",5),
+    BTG("BANCO BTG PACTUAL", "BRAZIL",6),
+    BANRISUL("BANRISUL", "BRAZIL",7),
+    SAFRA("BANCO SAFRA", "BRAZIL",8),
+    INTER("BANCO INTER", "BRAZIL",9),
     
-    AMERICA("BANK OF AMERICA", "America", "ESTADOS UNIDOS"),
-    FARGO("WELLS FARGO & CO.", "America", "ESTADOS UNIDOS"),
-    CITIGROUP("CITIGROUP INC.", "America", "ESTADOS UNIDOS"),
-    GOLDMAN("GOLDMAN SACHS GROUP, INC.", "America", "ESTADOS UNIDOS"),
-    MORGAN("MORGAN STANLEY", "America", "ESTADOS UNIDOS"),
-    MELLON("THE BANK OF NEW YORK MELLON CORPORATION", "America", "ESTADOS UNIDOS"),
-    BANCORP("U.S. BANCORP", "America", "ESTADOS UNIDOS"),
-    PNC("PNC FINANCIAL SERVICES GROUP", "America", "ESTADOS UNIDOS");
+    AMERICA("BANK OF AMERICA", "ESTADOS UNIDOS",0),
+    FARGO("WELLS FARGO & CO.", "ESTADOS UNIDOS",1),
+    CITIGROUP("CITIGROUP INC.", "ESTADOS UNIDOS",2),
+    GOLDMAN("GOLDMAN SACHS GROUP, INC.", "ESTADOS UNIDOS",3),
+    MORGAN("MORGAN STANLEY", "ESTADOS UNIDOS",4),
+    MELLON("THE BANK OF NEW YORK MELLON CORPORATION", "ESTADOS UNIDOS",5),
+    BANCORP("U.S. BANCORP",  "ESTADOS UNIDOS",6),
+    PNC("PNC FINANCIAL SERVICES GROUP",  "ESTADOS UNIDOS",7);
     
     private String key;
 
     private String value;
 
-    private String valueTwo;
+    private Integer id;
 
-    private EnumBank(String key, String value, String valueTwo) {
+    
+    
+    private EnumBank(String key, String value, Integer id) {
         this.key = key;
         this.value = value;
-        this.valueTwo = valueTwo;
+        this.id = id;
     }   
     
-
+    
     @Override
     public String getKey() {
         return key;
     }
-
+    
     public String getValue() {
         return value;
     }
-
-    public String getValueTwo() {
-        return valueTwo;
+    
+    public Integer getId() {
+        return id;
     }
 
     @Override

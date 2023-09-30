@@ -13,7 +13,7 @@ import domain.ienum.EnumCoinType;
 import infra.factory.BankFactory;
 
 @SuppressWarnings("all")
-public class App {
+public class CreatedAccountController {
     public static void main(String[] args) throws Exception {
         Scanner input = new Scanner(System.in);
         System.out.println("Digite seu nome: ");
@@ -25,18 +25,15 @@ public class App {
 
         var customer = new Customer(1, name, user, password);
 
-        System.out.println("em qual moeda deseja abrir a conta");
+        System.out.println("em qual moeda deseja abrir a conta\n");
 
         EnumCoinType coinType = showOptionsCoins(input);
 
-        System.out.println("escolha um banco");
+        System.out.println("escolha um banco\n");
 
-        String bankInput = input.nextLine();
-
-        EnumBank bank = EnumBank.parseByKey(bankInput);
-
+        EnumBank bank = showOptionsBanks(coinType, input);
         BankFactory.findBank(coinType, customer, bank);
-
+        
     }
 
     public static EnumCoinType showOptionsCoins(Scanner input) {
@@ -65,37 +62,25 @@ public class App {
         }
     }
 
-    public static EnumBank showOptionsBanks(Scanner input, EnumCoinType coinType) {
-        RepositoryEnumEuropa repositoryEnum = new RepositoryEnumEuropa();
-        var coinList = RepositoryEnumCoinType.getCoinList();
+    public static EnumBank showOptionsBanks(EnumCoinType coinType, Scanner input) {
 
-        for (int i = 0; i < coinList.size(); i++) {
-            var currency = coinList.get(i).getKey();
-            System.out.println(i + " " + currency);
+        if (coinType.equals(EnumCoinType.EUR)) {
+            var listReinoUnido = new RepositoryEnumEuropa();
+            return listReinoUnido.findBanks(listReinoUnido.getbanksList(), input);
         }
 
-        int inputOptionCoin = input.nextInt();
-
-        int opcao = inputOptionCoin;
-        EnumBank coinTyp;
-
-        switch (coinType) {
-            case EUR:
-                var listReinoUnido = new RepositoryEnumEuropa();
-                findBanks(listReinoUnido);
-                return coinTyp = EnumBank.AMERICA;
-            case US:
-                List<EnumBank> getbanksListAmericBanks = RepositoryEnumAmerica.getbanksList();
-                return coinTyp = EnumBank.BANCODOBRASIL;
-            case REAL:
-                List<EnumBank> getbanksListBrazilBanks = RepositoryEnumBrazil.getbanksList();
-                return coinTyp = EnumBank.BANCORP;
-            default:
-                throw new IllegalArgumentException("Opção inválida");
+        if (coinType.equals(EnumCoinType.US)) {
+            var listAmericBanks = new RepositoryEnumAmerica();
+            return listAmericBanks.findBanks(listAmericBanks.getbanksList(), input);
         }
-    }
+        if (coinType.equals(EnumCoinType.REAL)) {
+            var listBrazilBanks = new RepositoryEnumBrazil();
+            return listBrazilBanks.findBanks(listBrazilBanks.getbanksList(), input);
+        } else {
+            System.out.println("Opção inválida");
+        }
 
-    private static void findBanks(Object banksRepo) {
+        return null;
     }
 }
 

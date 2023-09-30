@@ -15,6 +15,13 @@ public class EnumUtil {
         }
     }
 
+    public static boolean isNull(Enum one) {
+        if (one == null) {
+            return true;
+        }
+        return false;
+    }
+
     public static boolean contains(Enum one, Enum... others) {
         if (others != null) {
             for (Enum en : others) {
