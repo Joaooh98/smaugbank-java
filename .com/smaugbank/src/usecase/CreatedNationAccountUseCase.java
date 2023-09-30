@@ -1,6 +1,7 @@
 package usecase;
 
 import java.util.List;
+import java.util.Random;
 
 import domain.Customer;
 import domain.CustomerAccount;
@@ -15,14 +16,30 @@ public class CreatedNationAccountUseCase implements CreatedAccount {
     public CustomerAccount create(EnumCoinType coinType, Customer customer, EnumBank bank) {
 
         var created = new CustomerAccountRepository();
+
+        String agency = accountNumberGenerator();
         
-        created.addCustomerAccount(customer, coinType, null, null, bank);
+        created.addCustomerAccount(customer, coinType, agency, "0001", bank);
 
         List<CustomerAccount> accounts = created.getAccount();
 
         var account = accounts.iterator().next();
 
         return account;
+
+        
+    }
+
+    public String accountNumberGenerator(){
+        Random random = new Random();
+        StringBuilder sequenceRandom = new StringBuilder();
+
+        for (int i = 0; i < 5; i++) {
+            int digitRandom = random.nextInt(10);  
+            sequenceRandom.append(digitRandom);
+        }
+
+        return sequenceRandom.toString();
     }
 
 }

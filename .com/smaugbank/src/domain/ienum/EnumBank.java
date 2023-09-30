@@ -13,6 +13,7 @@ public enum EnumBank implements Ienum{
     SCOTLAND("BANK OF SCOTLAND", "7", "REINO UNIDO"),
     TSB("TSB BANKING GROUP PLC", "8", "REINO UNIDO"),
     METRO("METRO BANK PLC", "9", "REINO UNIDO"),
+
     BANCODOBRASIL("BANCO DO BRASIL", "Brasil", "BRAZIL"),
     CAIXA("CAIXA ECONÔMICA FEDERAL", "Brasil", "BRAZIL"),
     UNIBANCO("ITAÚ UNIBANCO", "Brasil", "BRAZIL"),
@@ -23,6 +24,7 @@ public enum EnumBank implements Ienum{
     BANRISUL("BANRISUL", "Brasil", "BRAZIL"),
     SAFRA("BANCO SAFRA", "Brasil", "BRAZIL"),
     INTER("BANCO INTER", "Brasil", "BRAZIL"),
+    
     AMERICA("BANK OF AMERICA", "America", "ESTADOS UNIDOS"),
     FARGO("WELLS FARGO & CO.", "America", "ESTADOS UNIDOS"),
     CITIGROUP("CITIGROUP INC.", "America", "ESTADOS UNIDOS"),
@@ -36,9 +38,12 @@ public enum EnumBank implements Ienum{
 
     private String value;
 
+    private String valueTwo;
+
     private EnumBank(String key, String value, String valueTwo) {
         this.key = key;
         this.value = value;
+        this.valueTwo = valueTwo;
     }   
     
 
@@ -49,6 +54,10 @@ public enum EnumBank implements Ienum{
 
     public String getValue() {
         return value;
+    }
+
+    public String getValueTwo() {
+        return valueTwo;
     }
 
     @Override
