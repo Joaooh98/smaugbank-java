@@ -22,7 +22,6 @@ public class CustomerAccount {
     private EnumCoinType coitType;
 
     private BigDecimal currentBalance;
-    
 
     public CustomerAccount(Customer customer, String agencia, String conta, String userClient, String passwordClient,
             EnumBank bank, EnumCoinType coitType, BigDecimal currentBalance) {
@@ -100,5 +99,10 @@ public class CustomerAccount {
         this.currentBalance = currentBalance;
     }
 
-    
+    @Override
+    public String toString() {
+        return "CustomerAccount [customer=" + customer + ", agencia=" + agencia + ", conta=" + conta + ", userClient="
+                + userClient + ", passwordClient=" + passwordClient + ", bank=" + bank + ", coitType=" + coitType
+                + ", currentBalance=" + currentBalance + "]";
+    }
 }
