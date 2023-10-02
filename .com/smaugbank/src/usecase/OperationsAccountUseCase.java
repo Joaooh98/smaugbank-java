@@ -20,7 +20,9 @@ import domain.ienum.EnumCoinType;
 @SuppressWarnings("all")
 public class OperationsAccountUseCase {
 
-    public void deposit(CustomerAccount account, BigDecimal amountInput) {
+    public void deposit(CustomerAccount account, Scanner input) {
+        System.out.println("qual o valor que deseja depositar:");
+        var amountInput = input.nextBigDecimal();
         account.setCurrentBalance(amountInput);
     }
 
@@ -32,10 +34,11 @@ public class OperationsAccountUseCase {
     public BankSlip consultBankSlip(BankSlip bankSlip) {
         return bankSlip;
     }
-    
-    public BankSlip createdBankSlip(BigDecimal amount, String Issuer, String payer, CreatedVO bankSlipDueDate) {
+
+    public BankSlip createdBankSlip(BigDecimal amount, String Issuer, CreatedVO bankSlipDueDate) {
         String barCode = "";
-        
+        String payer = "test";
+
         BankSlip bankSlip = new BankSlip(amount, barCode, bankSlipDueDate, Issuer, payer);
         return bankSlip;
     }
@@ -48,7 +51,7 @@ public class OperationsAccountUseCase {
 
         boolean validEntry = false;
         int option = 0;
-        String incoming;
+        String incoming = "";
 
         while (!validEntry) {
 
@@ -67,19 +70,13 @@ public class OperationsAccountUseCase {
             System.out.println("4. consult bank slip data?");
             System.out.println("5. make a withdrawal?");
             System.out.println("6. close account operations?");
-            
 
-            try {
+            incoming = input.nextLine();
+            option = Integer.parseInt(incoming);
 
-                incoming = input.nextLine();
-                option = Integer.parseInt(incoming);
-
-                if (option >= 0 && option <= 5) {
-                    validEntry = true;
-                } else {
-                    throw new Exception();
-                }
-            } catch (Exception e) {
+            if (option >= 0 && option <= 5) {
+                validEntry = true;
+            } else {
                 System.out.println("entrada invalida escolha um numero de 1 a 5 \n");
                 System.out.println("invalid entry choose a number from 1 to 5 \n");
             }
@@ -87,12 +84,15 @@ public class OperationsAccountUseCase {
         return option;
     }
 
-    public String showAccountData(CustomerAccount account) {
-        return account.toString();
+    public void showAccountData(CustomerAccount account) {
+        account.toString();
     }
 
-    public boolean loginAccount(String user, String password, Customer customer) {
-
+    public boolean loginAccount(Scanner input, Customer customer) {
+        System.out.println("qual o seu usuario: ");
+        String user = input.nextLine();
+        System.out.println("qual o sua senha : ");
+        String password = input.nextLine();
         if (user.equals(customer.getUser())) {
             if (password.equals(customer.getPassword())) {
                 return true;

@@ -102,7 +102,7 @@ public class CustomerAccount {
     @Override
     public String toString() {
         return "CustomerAccount [customer=" + customer + ", agencia=" + agencia + ", conta=" + conta + ", userClient="
-                + userClient + ", passwordClient=" + passwordClient + ", bank=" + bank + ", coitType=" + coitType
-                + ", currentBalance=" + currentBalance + "]";
+                + userClient + ", passwordClient=" + passwordClient + ", bank=" + bank.getKey() + ", coitType=" + coitType.getKey()
+                + ", currentBalance=" + currentBalance.toString() + "]";
     }
 }

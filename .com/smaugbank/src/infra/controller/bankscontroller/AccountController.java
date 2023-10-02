@@ -36,42 +36,37 @@ public class AccountController {
 
         EnumBank bank = operations.showOptionsBanks(coinType, input);
         CustomerAccount account = BankFactory.findBank(coinType, customer, bank);
-
-        operations.showAccountData(account);
+        boolean loginAccount = operations.loginAccount(input, customer);
 
         int opcao = 0;
-        while (opcao != 6) {
-            boolean loginAccount = operations.loginAccount(user, password, customer);
-            for (int i = 0; i < 3; i++) {
-                if (loginAccount == true) {
+        if (loginAccount == true)
+            if (loginAccount == true) {
+                while (opcao != 6) {
                     opcao = operations.showOperations(input);
                     switch (opcao) {
                         case 1:
-                            operations.deposit(account, null);
+                            operations.deposit(account, input);
                             break;
                         case 2:
                             operations.consultBalance(account);
                             break;
                         case 3:
-                            operations.consultBankSlip(null);
+                            operations.createdBankSlip(null, null, null);
                             break;
                         case 4:
-                            operations.consultBalance(account);
+                            operations.consultBankSlip(null);
                             break;
                         case 5:
-                            operations.consultBalance(account);
-                            break;
-                        case 6:
-                            System.out.println("progama encerrado");
+                            operations.makeWithdrawal(null);
                             break;
                         default:
                             break;
                     }
-                } else {
-                    System.out.println("senha incorreta vc possui mais" + i + "tentativas");
                 }
+                System.out.println("programa encerrado");
+            } else {
+                System.out.println("senha incorreta vc digite novamente");
             }
-        }
     }
 }
 // Criação, configuração e implementação de projeto javaapplicationconfigurado.
