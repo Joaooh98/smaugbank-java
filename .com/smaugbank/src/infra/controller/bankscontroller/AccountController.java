@@ -1,5 +1,6 @@
 package infra.controller.bankscontroller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
 
@@ -36,39 +37,39 @@ public class AccountController {
 
         EnumBank bank = operations.showOptionsBanks(coinType, input);
         CustomerAccount account = BankFactory.findBank(coinType, customer, bank);
-        boolean loginAccount = operations.loginAccount(input, customer);
+        operations.loginAccount(input, customer);
 
-        int opcao = 0;
-        if (loginAccount == true)
-            if (loginAccount == true) {
-                while (opcao != 6) {
-                    opcao = operations.showOperations(input);
-                    switch (opcao) {
-                        case 1:
-                            operations.deposit(account, input);
-                            break;
-                        case 2:
-                            operations.consultBalance(account);
-                            break;
-                        case 3:
-                            operations.createdBankSlip(null, null, null);
-                            break;
-                        case 4:
-                            operations.consultBankSlip(null);
-                            break;
-                        case 5:
-                            operations.makeWithdrawal(null);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                System.out.println("programa encerrado");
-            } else {
-                System.out.println("senha incorreta vc digite novamente");
+        
+        int opcao = operations.showOperations(input);
+
+        while (opcao != 6) {
+            switch (opcao) {
+                case 1:
+                    BigDecimal depositAmount = operations.deposit(account, input);
+                    System.out.println("valor depositado :"+depositAmount);
+                    break;
+                case 2:
+                    BigDecimal balance = operations.consultBalance(account);
+                    System.out.println("seu saldo atual e:"+balance+" "+account.getCoitType().getValue());
+                    break;
+                case 3:
+                    operations.createdBankSlip(null, null, null);
+                    break;
+                case 4:
+                    operations.consultBankSlip(null);
+                    break;
+                case 5:
+                    operations.makeWithdrawal(null);
+                    break;
+                default:
+                    break;
             }
+            opcao = operations.showOperations(input);
+        }
+        System.out.println("Programa encerrado");
     }
 }
+
 // Criação, configuração e implementação de projeto javaapplicationconfigurado.
 // Aplicação de gerencia de banco com procedimentos básicos como
 // informaçãodeusuário(nome, sobrenome e CPF), e procedimentos bancários como

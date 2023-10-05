@@ -20,10 +20,11 @@ import domain.ienum.EnumCoinType;
 @SuppressWarnings("all")
 public class OperationsAccountUseCase {
 
-    public void deposit(CustomerAccount account, Scanner input) {
+    public BigDecimal deposit(CustomerAccount account, Scanner input) {
         System.out.println("qual o valor que deseja depositar:");
         var amountInput = input.nextBigDecimal();
         account.setCurrentBalance(amountInput);
+        return amountInput;
     }
 
     public BigDecimal consultBalance(CustomerAccount account) {
@@ -39,7 +40,7 @@ public class OperationsAccountUseCase {
         String barCode = "";
         String payer = "test";
 
-        BankSlip bankSlip = new BankSlip(amount, barCode, bankSlipDueDate, Issuer, payer);
+        BankSlip bankSlip = new BankSlip.BankSlipBuilder().build();
         return bankSlip;
     }
 
@@ -51,7 +52,7 @@ public class OperationsAccountUseCase {
 
         boolean validEntry = false;
         int option = 0;
-        String incoming = "";
+
 
         while (!validEntry) {
 
@@ -71,14 +72,14 @@ public class OperationsAccountUseCase {
             System.out.println("5. make a withdrawal?");
             System.out.println("6. close account operations?");
 
-            incoming = input.nextLine();
+            String incoming = input.nextLine();
             option = Integer.parseInt(incoming);
 
             if (option >= 0 && option <= 5) {
                 validEntry = true;
             } else {
-                System.out.println("entrada invalida escolha um numero de 1 a 5 \n");
-                System.out.println("invalid entry choose a number from 1 to 5 \n");
+                System.out.println("entrada invalida escolha um numero de 1 a 6 \n");
+                System.out.println("invalid entry choose a number from 1 to 6 \n");
             }
         }
         return option;
@@ -88,17 +89,27 @@ public class OperationsAccountUseCase {
         account.toString();
     }
 
-    public boolean loginAccount(Scanner input, Customer customer) {
-        System.out.println("qual o seu usuario: ");
-        String user = input.nextLine();
-        System.out.println("qual o sua senha : ");
-        String password = input.nextLine();
-        if (user.equals(customer.getUser())) {
-            if (password.equals(customer.getPassword())) {
-                return true;
+    public static void loginAccount(Scanner input, Customer customer) {
+        boolean authorized = false;
+        
+        while (!authorized) {
+            System.out.print("Qual é o seu usuário: ");
+            String userC = input.nextLine();
+    
+            if (userC.equals(customer.getUser())) {
+                System.out.print("Qual é a sua senha: ");
+                String password = input.nextLine();
+    
+                if (password.equals(customer.getPassword())) {
+                    authorized = true;
+                    System.out.println("Logado com sucesso!\n");
+                } else {
+                    System.out.println("Senha incorreta, tente novamente!");
+                }
+            } else {
+                System.out.println("Usuário incorreto, tente novamente!");
             }
         }
-        return false;
     }
 
     public static EnumCoinType showOptionsCoins(Scanner input) {
