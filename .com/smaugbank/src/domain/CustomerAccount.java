@@ -9,7 +9,7 @@ public class CustomerAccount {
 
     private Customer customer;
 
-    private String agencia;
+    private String agency;
 
     private String conta;
 
@@ -23,11 +23,11 @@ public class CustomerAccount {
 
     private BigDecimal currentBalance;
 
-    public CustomerAccount(Customer customer, String agencia, String conta, String userClient, String passwordClient,
+    public CustomerAccount(Customer customer, String agencia, String account, String userClient, String passwordClient,
             EnumBank bank, EnumCoinType coitType, BigDecimal currentBalance) {
         this.customer = customer;
-        this.agencia = agencia;
-        this.conta = conta;
+        this.agency = agencia;
+        this.conta = account;
         this.userClient = userClient;
         this.passwordClient = passwordClient;
         this.bank = bank;
@@ -43,12 +43,12 @@ public class CustomerAccount {
         this.customer = customer;
     }
 
-    public String getAgencia() {
-        return agencia;
+    public String getAgency() {
+        return agency;
     }
 
-    public void setAgencia(String agencia) {
-        this.agencia = agencia;
+    public void setAgency(String agencia) {
+        this.agency = agencia;
     }
 
     public String getConta() {
@@ -101,7 +101,7 @@ public class CustomerAccount {
 
     @Override
     public String toString() {
-        return "CustomerAccount [customer=" + customer + ", agencia=" + agencia + ", conta=" + conta + ", userClient="
+        return "CustomerAccount [customer=" + customer + ", agencia=" + agency + ", conta=" + conta + ", userClient="
                 + userClient + ", passwordClient=" + passwordClient + ", bank=" + bank.getKey() + ", coitType=" + coitType.getKey()
                 + ", currentBalance=" + currentBalance.toString() + "]";
     }

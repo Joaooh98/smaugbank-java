@@ -18,25 +18,27 @@ public class CreatedNationAccountUseCase implements CreatedAccount {
         Validate(coinType, bank);
         var created = new CustomerAccountRepository();
 
-        String agency = accountNumberGenerator();
+        String account = numberGenerator(5);
 
-        created.addCustomerAccount(customer, coinType, agency, "0001", bank);
+        String agency = numberGenerator(2);
+
+        created.addCustomerAccount(customer, coinType, agency, account, bank);
 
         List<CustomerAccount> accounts = created.getAccount();
 
-        var account = accounts.iterator().next();
+        var accountCustomer = accounts.iterator().next();
 
         System.out.println("conta criada com sucesso");
 
-        return account;
+        return accountCustomer;
 
     }
 
-    public String accountNumberGenerator() {
+    public String numberGenerator(int e) {
         Random random = new Random();
         StringBuilder sequenceRandom = new StringBuilder();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < e; i++) {
             int digitRandom = random.nextInt(10);
             sequenceRandom.append(digitRandom);
         }
