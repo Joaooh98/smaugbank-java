@@ -22,12 +22,17 @@ public class BankSlip {
 
     private String agency;
 
+    private String account;
+
     private String ourNumber;
 
     private Integer codeBank;
 
+    private String lineDigitable;
+
     private BankSlip(BigDecimal amount, String barCode, CreatedVO bankSlipDueDate, String issuer, String payer,
-            String bankCode, String currencyCode, String agency, String ourNumber, Integer codeBank) {
+            String bankCode, String currencyCode, String agency, String account, String ourNumber, Integer codeBank,
+            String lineDigitable) {
         this.amount = amount;
         this.barCode = barCode;
         this.bankSlipDueDate = bankSlipDueDate;
@@ -36,8 +41,10 @@ public class BankSlip {
         this.bankCode = bankCode;
         this.currencyCode = currencyCode;
         this.agency = agency;
+        this.account = account;
         this.ourNumber = ourNumber;
         this.codeBank = codeBank;
+        this.lineDigitable = lineDigitable;
     }
 
     public static class BankSlipBuilder {
@@ -49,8 +56,10 @@ public class BankSlip {
         private String bankCode;
         private String currencyCode;
         private String agency;
+        private String account;
         private String ourNumber;
         private Integer codeBank;
+        private String lineDigitable;
 
         public BankSlipBuilder amount(BigDecimal amount) {
             this.amount = amount;
@@ -92,6 +101,11 @@ public class BankSlip {
             return this;
         }
 
+        public BankSlipBuilder account(String account) {
+            this.account = account;
+            return this;
+        }
+
         public BankSlipBuilder ourNumber(String ourNumber) {
             this.ourNumber = ourNumber;
             return this;
@@ -102,44 +116,42 @@ public class BankSlip {
             return this;
         }
 
+        public BankSlipBuilder lineDigitable(String lineDigitable) {
+            this.lineDigitable = lineDigitable;
+            return this;
+        }
+
         public BankSlip build() {
             var bankSlip = new BankSlip(amount, barCode, bankSlipDueDate, Issuer, payer, bankCode, currencyCode, agency,
-                    ourNumber, codeBank);
+                    account, ourNumber, codeBank, lineDigitable);
+            String line = genereteLineDigitable(bankSlip);
+
+            bankSlip.setLineDigitable(line);
             return bankSlip;
         }
 
     }
 
-    public static void validate(BankSlip bankSlip) {
-        // Posição 01-03 = identificação do banco (001 = Banco do Brasil) = codeBank +
-        // 00
-        // Posição 04-04 = código da moeda (9 = Real)
-        // Posição 05-09 = 5 primeiras posições do campo livre (*) = agency
-        // Posição 10-10 = dígito verificador do primeiro campo = ultimo digito da
-        // agencia
-        // Posição 11-20 = 6ª a 15ª posições do campo livre (*) = account
-        // Posição 21-21 = dígito verificador do segundo campo = ultimo digito da
-        // account
-        // Posição 22-31 = 16ª a 25ª posições do campo livre (*) nosso numero
-        // Posição 32-32 = dígito verificador do terceiro campo = ourNumber
-        // Posição 33-33 = dígito verificador geral ultimo digito ourNumber
-        // Posição 34-37 = fator de vencimento (3737 = 31/12/2007) calculateDateFactor
-        // Posição 38-47 = valor do boleto (100 = R$1,00 amount
-
+    public static String genereteLineDigitable(BankSlip bankSlip) {
         try {
-            StringBuilder lineDigitable = new StringBuilder();
-
-            var stringBuilder = new StringBuilder();
-            var bankCode = bankSlip.getBankCode();
+            
+            StringBuilder lineDigit = new StringBuilder();
+            var codeBank = bankSlip.getCodeBank();
+            var account = bankSlip.getAccount();
             var currencyCode = bankSlip.getCurrencyCode();
             var agency = bankSlip.getAgency();
-            var amount = bankSlip.getAmount();
-            var issuer = bankSlip.getIssuer();
-            var payer = bankSlip.getPayer();
+            var ourNumber = bankSlip.getOurNumber();
+            var amountBig = bankSlip.getAmount();
+            String amount = amountBig.toString();
             var dueDate = bankSlip.bankSlipDueDate.getValue();
             String calculateDateFactor = DateUtil.calculateDateFactor(dueDate);
+            lineDigit.append("00" + codeBank + currencyCode + "." + agency + "-" + "0" + account + "-" + "0"
+                    + ourNumber + "-" + "0" + calculateDateFactor + amount);
 
-            lineDigitable.append(bankCode + currencyCode+"."+agency+" "+agency);
+            var line = lineDigit.toString();
+            
+            return line;
+
         } catch (ParseException e) {
             throw new IllegalArgumentException(
                     "data nao esta no formato esperado para gerar o boleto yyyy-MM-dd, ou algum campo nao foi informado verifique novamente");
@@ -210,6 +222,14 @@ public class BankSlip {
         this.agency = agency;
     }
 
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
     public String getOurNumber() {
         return ourNumber;
     }
@@ -226,4 +246,11 @@ public class BankSlip {
         this.codeBank = codeBank;
     }
 
+    public String getLineDigitable() {
+        return lineDigitable;
+    }
+
+    public void setLineDigitable(String lineDigitable) {
+        this.lineDigitable = lineDigitable;
+    }
 }

@@ -75,7 +75,7 @@ public class OperationsAccountUseCase {
             String incoming = input.nextLine();
             option = Integer.parseInt(incoming);
 
-            if (option >= 0 && option <= 5) {
+            if (option >= 0 && option <= 7) {
                 validEntry = true;
             } else {
                 System.out.println("entrada invalida escolha um numero de 1 a 6 \n");
@@ -93,6 +93,7 @@ public class OperationsAccountUseCase {
         boolean authorized = false;
         
         while (!authorized) {
+
             System.out.print("Qual é o seu usuário: ");
             String userC = input.nextLine();
     
