@@ -11,11 +11,17 @@ public class CustomerRepository {
 
     public void addCustumer(String name, String user, String password){
         Integer id = 1;
-        var newCustomer = new Customer(id, name, user, password);
+        var newCustomer = new Customer.CustomerBuilder()
+        .Id(id)
+        .name(name)
+        .user(user)
+        .password(password)
+        .build();
+
         customers.add(newCustomer);
     }
 
-    public List<Customer> getCustomers(){
-        return customers;
+    public Customer getCustomers(){
+        return customers.iterator().next();
     }
 }

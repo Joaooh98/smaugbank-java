@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import domain.Customer;
 import domain.CustomerAccount;
+import domain.Repository.CustomerRepository;
 import domain.Repository.RepositoryEnumAmerica;
 import domain.Repository.RepositoryEnumBrazil;
 import domain.Repository.RepositoryEnumCoinType;
@@ -27,7 +28,9 @@ public class AccountController {
         System.out.println("escolha uma senha: ");
         String password = input.nextLine();
 
-        var customer = new Customer(1, name, user, password);
+        var customerRepository = new CustomerRepository();
+        customerRepository.addCustumer(name, user, password);
+        var customer = customerRepository.getCustomers();
 
         System.out.println("em qual moeda deseja abrir a conta\n");
 
@@ -39,18 +42,17 @@ public class AccountController {
         CustomerAccount account = BankFactory.findBank(coinType, customer, bank);
         operations.loginAccount(input, customer);
 
-        
         int opcao = operations.showOperations(input);
 
         while (opcao != 6) {
             switch (opcao) {
                 case 1:
                     BigDecimal depositAmount = operations.deposit(account, input);
-                    System.out.println("valor depositado :"+depositAmount);
+                    System.out.println("valor depositado :" + depositAmount);
                     break;
                 case 2:
                     BigDecimal balance = operations.consultBalance(account);
-                    System.out.println("seu saldo atual e:"+balance+" "+account.getCoitType().getValue());
+                    System.out.println("seu saldo atual e:" + balance + " " + account.getCoitType().getValue());
                     break;
                 case 3:
                     operations.createdBankSlip(null, null, null);
