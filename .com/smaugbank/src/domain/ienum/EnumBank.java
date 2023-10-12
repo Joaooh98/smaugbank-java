@@ -1,6 +1,6 @@
 package domain.ienum;
 
-import domain.ienum.utils.EnumUtil;
+import domain.utils.EnumUtil;
 
 public enum EnumBank implements Ienum{
     

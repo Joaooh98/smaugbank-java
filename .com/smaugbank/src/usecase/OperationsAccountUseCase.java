@@ -5,22 +5,22 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
-import domain.Customer;
-import domain.CustomerAccount;
-import domain.Withdraw;
-import domain.BankSlip;
 import domain.CreatedVO;
 import domain.Repository.RepositoryEnumAmerica;
 import domain.Repository.RepositoryEnumBrazil;
 import domain.Repository.RepositoryEnumCoinType;
 import domain.Repository.RepositoryEnumEuropa;
+import domain.entities.BankSlip;
+import domain.entities.Customer;
+import domain.entities.CustomerAccount;
+import domain.entities.Withdraw;
 import domain.ienum.EnumBank;
 import domain.ienum.EnumCoinType;
 
 @SuppressWarnings("all")
 public class OperationsAccountUseCase {
 
-    public BigDecimal deposit(CustomerAccount account, Scanner input) {
+    public BigDecimal createdDeposit(CustomerAccount account, Scanner input) {
         System.out.println("qual o valor que deseja depositar:");
         var amountInput = input.nextBigDecimal();
         account.setCurrentBalance(amountInput);
@@ -48,7 +48,7 @@ public class OperationsAccountUseCase {
         return withdraw;
     }
 
-    public static int showOperations(Scanner input) {
+    public static int showOperations(Scanner input, CustomerAccount account) {
 
         boolean validEntry = false;
         int option = 0;
@@ -56,14 +56,19 @@ public class OperationsAccountUseCase {
 
         while (!validEntry) {
 
-            System.out.println("Digite a opcao desejada");
-            System.out.println("1. deseja realizar o deposito?");
-            System.out.println("2. consultar saldo?");
-            System.out.println("3. gerar boleto?");
-            System.out.println("4. consultar dados do boleto?");
-            System.out.println("5. deseja realizar um saque?");
-            System.out.println("6. encerrar operacoes na conta");
+            if (account.getCoitType().equals(EnumCoinType.REAL)) {
+                
+                System.out.println("Digite a opcao desejada");
+                System.out.println("1. deseja realizar o deposito?");
+                System.out.println("2. consultar saldo?");
+                System.out.println("3. gerar boleto?");
+                System.out.println("4. consultar dados do boleto?");
+                System.out.println("5. deseja realizar um saque?");
+                System.out.println("6. encerrar operacoes na conta");
+            }
+
             System.out.println("\noptions in English\n");
+
             System.out.println("Enter the desired option");
             System.out.println("1. Do you want to make the deposit?");
             System.out.println("2. check balance?");

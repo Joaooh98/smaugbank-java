@@ -1,7 +1,7 @@
 package infra.factory;
 
-import domain.Customer;
-import domain.CustomerAccount;
+import domain.entities.Customer;
+import domain.entities.CustomerAccount;
 import domain.ienum.EnumBank;
 import domain.ienum.EnumCoinType;
 import usecase.CreatedNationAccountUseCase;

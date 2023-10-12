@@ -1,4 +1,4 @@
-package domain.ienum.utils;
+package domain.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

@@ -1,4 +1,4 @@
-package domain.ienum.utils;
+package domain.utils;
 
 import domain.ienum.Ienum;
 

@@ -1,18 +1,19 @@
-package domain;
+package domain.entities;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
 
-import domain.ienum.utils.DateUtil;
+import domain.CreatedVO;
+import domain.utils.DateUtil;
+import domain.utils.StringUtil;
 
 public class BankSlip {
+
     private BigDecimal amount;
 
     private String barCode;
 
     private CreatedVO bankSlipDueDate;
-
-    private String issuer;
 
     private String payer;
 
@@ -20,46 +21,36 @@ public class BankSlip {
 
     private String currencyCode;
 
-    private String agency;
-
-    private String account;
-
     private String ourNumber;
-
-    private Integer codeBank;
 
     private String lineDigitable;
 
-    private BankSlip(BigDecimal amount, String barCode, CreatedVO bankSlipDueDate, String issuer, String payer,
-            String bankCode, String currencyCode, String agency, String account, String ourNumber, Integer codeBank,
-            String lineDigitable) {
+    private CustomerAccount customerAccount;
+
+    private BankSlip(BigDecimal amount, String barCode, CreatedVO bankSlipDueDate, String payer, String bankCode,
+            String currencyCode, String ourNumber, String lineDigitable, CustomerAccount customerAccount) {
         this.amount = amount;
         this.barCode = barCode;
         this.bankSlipDueDate = bankSlipDueDate;
-        this.issuer = issuer;
         this.payer = payer;
         this.bankCode = bankCode;
         this.currencyCode = currencyCode;
-        this.agency = agency;
-        this.account = account;
         this.ourNumber = ourNumber;
-        this.codeBank = codeBank;
         this.lineDigitable = lineDigitable;
+        this.customerAccount = customerAccount;
     }
 
     public static class BankSlipBuilder {
+
         private BigDecimal amount;
         private String barCode;
         private CreatedVO bankSlipDueDate;
-        private String Issuer;
         private String payer;
         private String bankCode;
         private String currencyCode;
-        private String agency;
-        private String account;
         private String ourNumber;
-        private Integer codeBank;
         private String lineDigitable;
+        private CustomerAccount customerAccount;
 
         public BankSlipBuilder amount(BigDecimal amount) {
             this.amount = amount;
@@ -73,11 +64,6 @@ public class BankSlip {
 
         public BankSlipBuilder bankSlipDueDate(CreatedVO bankSlipDueDate) {
             this.bankSlipDueDate = bankSlipDueDate;
-            return this;
-        }
-
-        public BankSlipBuilder Issuer(String Issuer) {
-            this.Issuer = Issuer;
             return this;
         }
 
@@ -96,23 +82,8 @@ public class BankSlip {
             return this;
         }
 
-        public BankSlipBuilder agency(String agency) {
-            this.agency = agency;
-            return this;
-        }
-
-        public BankSlipBuilder account(String account) {
-            this.account = account;
-            return this;
-        }
-
         public BankSlipBuilder ourNumber(String ourNumber) {
             this.ourNumber = ourNumber;
-            return this;
-        }
-
-        public BankSlipBuilder codeBank(Integer codeBank) {
-            this.codeBank = codeBank;
             return this;
         }
 
@@ -121,9 +92,14 @@ public class BankSlip {
             return this;
         }
 
+        public BankSlipBuilder customerAccount(CustomerAccount customerAccount) {
+            this.customerAccount = customerAccount;
+            return this;
+        }
+
         public BankSlip build() {
-            var bankSlip = new BankSlip(amount, barCode, bankSlipDueDate, Issuer, payer, bankCode, currencyCode, agency,
-                    account, ourNumber, codeBank, lineDigitable);
+            var bankSlip = new BankSlip(amount, barCode, bankSlipDueDate, payer, bankCode, currencyCode, ourNumber,
+                    lineDigitable, customerAccount);
             String line = genereteLineDigitable(bankSlip);
 
             bankSlip.setLineDigitable(line);
@@ -134,22 +110,22 @@ public class BankSlip {
 
     public static String genereteLineDigitable(BankSlip bankSlip) {
         try {
-            
+
             StringBuilder lineDigit = new StringBuilder();
-            var codeBank = bankSlip.getCodeBank();
-            var account = bankSlip.getAccount();
+            var codeBank = bankSlip.getCustomerAccount().getBank().getId();
+            var account = bankSlip.getCustomerAccount().getAccount();
             var currencyCode = bankSlip.getCurrencyCode();
-            var agency = bankSlip.getAgency();
-            var ourNumber = bankSlip.getOurNumber();
+            var agency = bankSlip.getCustomerAccount().getAgency();
+            var ourNumber = StringUtil.numberGenerator(8);
             var amountBig = bankSlip.getAmount();
             String amount = amountBig.toString();
             var dueDate = bankSlip.bankSlipDueDate.getValue();
-            String calculateDateFactor = DateUtil.calculateDateFactor(dueDate);
-            lineDigit.append("00" + codeBank + currencyCode + "." + agency + "-" + "0" + account + "-" + "0"
-                    + ourNumber + "-" + "0" + calculateDateFactor + amount);
+            String dateFactor = DateUtil.calculateDateFactor(dueDate);
+            lineDigit.append("00" + codeBank + currencyCode + "." + agency + account
+                    + ourNumber + "-" + "0" + dateFactor + amount);
 
             var line = lineDigit.toString();
-            
+
             return line;
 
         } catch (ParseException e) {
@@ -182,14 +158,6 @@ public class BankSlip {
         this.bankSlipDueDate = bankSlipDueDate;
     }
 
-    public String getIssuer() {
-        return issuer;
-    }
-
-    public void setIssuer(String issuer) {
-        this.issuer = issuer;
-    }
-
     public String getPayer() {
         return payer;
     }
@@ -214,36 +182,12 @@ public class BankSlip {
         this.currencyCode = currencyCode;
     }
 
-    public String getAgency() {
-        return agency;
-    }
-
-    public void setAgency(String agency) {
-        this.agency = agency;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
     public String getOurNumber() {
         return ourNumber;
     }
 
     public void setOurNumber(String ourNumber) {
         this.ourNumber = ourNumber;
-    }
-
-    public Integer getCodeBank() {
-        return codeBank;
-    }
-
-    public void setCodeBank(Integer codeBank) {
-        this.codeBank = codeBank;
     }
 
     public String getLineDigitable() {
@@ -253,4 +197,13 @@ public class BankSlip {
     public void setLineDigitable(String lineDigitable) {
         this.lineDigitable = lineDigitable;
     }
+
+    public CustomerAccount getCustomerAccount() {
+        return customerAccount;
+    }
+
+    public void setCustomerAccount(CustomerAccount customerAccount) {
+        this.customerAccount = customerAccount;
+    }
+
 }

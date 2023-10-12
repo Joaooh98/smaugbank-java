@@ -4,13 +4,13 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
 
-import domain.Customer;
-import domain.CustomerAccount;
 import domain.Repository.CustomerRepository;
 import domain.Repository.RepositoryEnumAmerica;
 import domain.Repository.RepositoryEnumBrazil;
 import domain.Repository.RepositoryEnumCoinType;
 import domain.Repository.RepositoryEnumEuropa;
+import domain.entities.Customer;
+import domain.entities.CustomerAccount;
 import domain.ienum.EnumBank;
 import domain.ienum.EnumCoinType;
 import infra.factory.BankFactory;
@@ -42,12 +42,12 @@ public class AccountController {
         CustomerAccount account = BankFactory.findBank(coinType, customer, bank);
         operations.loginAccount(input, customer);
 
-        int opcao = operations.showOperations(input);
+        int opcao = operations.showOperations(input, account);
 
         while (opcao != 6) {
             switch (opcao) {
                 case 1:
-                    BigDecimal depositAmount = operations.deposit(account, input);
+                    BigDecimal depositAmount = operations.createdDeposit(account, input);
                     System.out.println("valor depositado :" + depositAmount);
                     break;
                 case 2:
@@ -66,7 +66,6 @@ public class AccountController {
                 default:
                     break;
             }
-            opcao = operations.showOperations(input);
         }
         System.out.println("Programa encerrado");
     }

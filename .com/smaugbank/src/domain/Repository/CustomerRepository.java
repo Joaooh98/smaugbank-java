@@ -3,7 +3,7 @@ package domain.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.Customer;
+import domain.entities.Customer;
 
 public class CustomerRepository {
 

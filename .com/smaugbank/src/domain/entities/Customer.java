@@ -1,4 +1,4 @@
-package domain;
+package domain.entities;
 
 public class Customer {
 
@@ -10,7 +10,6 @@ public class Customer {
     
     private String password;
     
-
     private Customer(Integer id, String name, String user, String password) {
         this.Id = id;
         this.name = name;
