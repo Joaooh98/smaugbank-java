@@ -1,17 +1,13 @@
 package usecase;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Scanner;
 
-import domain.CreatedVO;
 import domain.Repository.RepositoryEnumAmerica;
 import domain.Repository.RepositoryEnumBrazil;
 import domain.Repository.RepositoryEnumCoinType;
 import domain.Repository.RepositoryEnumEuropa;
 import domain.entities.BankSlip;
-import domain.entities.Customer;
 import domain.entities.CustomerAccount;
 import domain.entities.Withdraw;
 import domain.ienum.EnumBank;
@@ -36,11 +32,17 @@ public class OperationsAccountUseCase {
         return bankSlip;
     }
 
-    public BankSlip createdBankSlip(BigDecimal amount, String Issuer, CreatedVO bankSlipDueDate) {
-        String barCode = "";
-        String payer = "test";
+    public BankSlip createdBankSlip(CustomerAccount account, Scanner input) {
+        System.out.println("qual o valor do deposito?");
+        Integer amount = input.nextInt();
+        
+        System.out.println("qual o nome do cliente?");
+        String payer = input.nextLine();
 
-        BankSlip bankSlip = new BankSlip.BankSlipBuilder().build();
+        BankSlip bankSlip = new BankSlip.BankSlipBuilder()
+        .amount(amount)
+        .payer(payer)
+        .build();
         return bankSlip;
     }
 
@@ -94,19 +96,20 @@ public class OperationsAccountUseCase {
         account.toString();
     }
 
-    public static void loginAccount(Scanner input, Customer customer) {
+    public synchronized void loginAccount(Scanner input, CustomerAccount account) {
         boolean authorized = false;
         
         while (!authorized) {
 
             System.out.print("Qual é o seu usuário: ");
-            String userC = input.nextLine();
+            
+            String userCli = input.nextLine();
     
-            if (userC.equals(customer.getUser())) {
+            if (userCli.equals(account.getUserClient())) {
                 System.out.print("Qual é a sua senha: ");
                 String password = input.nextLine();
     
-                if (password.equals(customer.getPassword())) {
+                if (password.equals(account.getPasswordClient())) {
                     authorized = true;
                     System.out.println("Logado com sucesso!\n");
                 } else {

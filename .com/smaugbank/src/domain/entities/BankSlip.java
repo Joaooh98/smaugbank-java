@@ -1,6 +1,5 @@
 package domain.entities;
 
-import java.math.BigDecimal;
 import java.text.ParseException;
 
 import domain.CreatedVO;
@@ -9,7 +8,7 @@ import domain.utils.StringUtil;
 
 public class BankSlip {
 
-    private BigDecimal amount;
+    private Integer amount;
 
     private String barCode;
 
@@ -27,7 +26,7 @@ public class BankSlip {
 
     private CustomerAccount customerAccount;
 
-    private BankSlip(BigDecimal amount, String barCode, CreatedVO bankSlipDueDate, String payer, String bankCode,
+    private BankSlip(Integer amount, String barCode, CreatedVO bankSlipDueDate, String payer, String bankCode,
             String currencyCode, String ourNumber, String lineDigitable, CustomerAccount customerAccount) {
         this.amount = amount;
         this.barCode = barCode;
@@ -42,7 +41,7 @@ public class BankSlip {
 
     public static class BankSlipBuilder {
 
-        private BigDecimal amount;
+        private Integer amount;
         private String barCode;
         private CreatedVO bankSlipDueDate;
         private String payer;
@@ -52,7 +51,7 @@ public class BankSlip {
         private String lineDigitable;
         private CustomerAccount customerAccount;
 
-        public BankSlipBuilder amount(BigDecimal amount) {
+        public BankSlipBuilder amount(Integer amount) {
             this.amount = amount;
             return this;
         }
@@ -134,11 +133,11 @@ public class BankSlip {
         }
     }
 
-    public BigDecimal getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 

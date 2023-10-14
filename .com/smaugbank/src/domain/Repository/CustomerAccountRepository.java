@@ -18,6 +18,8 @@ public class CustomerAccountRepository {
 
         var newCustomerAccount = new CustomerAccount.CustomerAccountBuilder()
                 .Customer(customer)
+                .userClient(customer.getUser())
+                .passwordClient(customer.getPassword())
                 .account(conta)
                 .agency(agencia)
                 .bank(bank)

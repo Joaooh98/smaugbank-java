@@ -40,7 +40,10 @@ public class AccountController {
 
         EnumBank bank = operations.showOptionsBanks(coinType, input);
         CustomerAccount account = BankFactory.findBank(coinType, customer, bank);
-        operations.loginAccount(input, customer);
+        
+        System.out.println("conta criada com sucesso");
+
+        operations.loginAccount(input, account);
 
         int opcao = operations.showOperations(input, account);
 
@@ -55,7 +58,7 @@ public class AccountController {
                     System.out.println("seu saldo atual e:" + balance + " " + account.getCoitType().getValue());
                     break;
                 case 3:
-                    operations.createdBankSlip(null, null, null);
+                    operations.createdBankSlip(account, input);
                     break;
                 case 4:
                     operations.consultBankSlip(null);
