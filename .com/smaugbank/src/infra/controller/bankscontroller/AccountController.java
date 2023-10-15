@@ -14,12 +14,14 @@ import domain.entities.CustomerAccount;
 import domain.ienum.EnumBank;
 import domain.ienum.EnumCoinType;
 import infra.factory.BankFactory;
+import usecase.LoginUseCase;
 import usecase.OperationsAccountUseCase;
 
 @SuppressWarnings("all")
 public class AccountController {
     public static void main(String[] args) throws Exception {
         var operations = new OperationsAccountUseCase();
+        var loginUseCase = new LoginUseCase();
         Scanner input = new Scanner(System.in);
         System.out.println("Digite seu nome: ");
         String name = input.nextLine();
@@ -40,10 +42,11 @@ public class AccountController {
 
         EnumBank bank = operations.showOptionsBanks(coinType, input);
         CustomerAccount account = BankFactory.findBank(coinType, customer, bank);
-        
-        System.out.println("conta criada com sucesso");
 
-        operations.loginAccount(input, account);
+        System.out.println("conta criada com sucesso");
+        
+        loginUseCase.loginAccount(account);
+
 
         int opcao = operations.showOperations(input, account);
 

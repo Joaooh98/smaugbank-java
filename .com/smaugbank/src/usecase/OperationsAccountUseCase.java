@@ -96,31 +96,6 @@ public class OperationsAccountUseCase {
         account.toString();
     }
 
-    public synchronized void loginAccount(Scanner input, CustomerAccount account) {
-        boolean authorized = false;
-        
-        while (!authorized) {
-
-            System.out.print("Qual é o seu usuário: ");
-            
-            String userCli = input.nextLine();
-    
-            if (userCli.equals(account.getUserClient())) {
-                System.out.print("Qual é a sua senha: ");
-                String password = input.nextLine();
-    
-                if (password.equals(account.getPasswordClient())) {
-                    authorized = true;
-                    System.out.println("Logado com sucesso!\n");
-                } else {
-                    System.out.println("Senha incorreta, tente novamente!");
-                }
-            } else {
-                System.out.println("Usuário incorreto, tente novamente!");
-            }
-        }
-    }
-
     public static EnumCoinType showOptionsCoins(Scanner input) {
         var coinList = RepositoryEnumCoinType.getCoinList();
 
