@@ -39,7 +39,8 @@ public class OperationsAccountUseCase {
         System.out.println("qual o nome do cliente?");
         String payer = input.nextLine();
 
-        BankSlip bankSlip = new BankSlip.BankSlipBuilder()
+        BankSlip bankSlip = new BankSlip
+        .BankSlipBuilder()
         .amount(amount)
         .payer(payer)
         .build();
