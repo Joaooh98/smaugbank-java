@@ -9,6 +9,13 @@
             "name": "AccountController",
             "request": "launch",
             "mainClass": "infra.controller.bankscontroller.AccountController",
+            "projectName": "smaugbank-java_f583364b"
+        },
+        {
+            "type": "java",
+            "name": "AccountController",
+            "request": "launch",
+            "mainClass": "infra.controller.bankscontroller.AccountController",
             "projectName": "smaugbank-java_19a009e1"
         },
         {

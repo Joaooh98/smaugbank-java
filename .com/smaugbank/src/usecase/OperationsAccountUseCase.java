@@ -51,48 +51,6 @@ public class OperationsAccountUseCase {
         return withdraw;
     }
 
-    public static int showOperations(Scanner input, CustomerAccount account) {
-
-        boolean validEntry = false;
-        int option = 0;
-
-
-        while (!validEntry) {
-
-            if (account.getCoitType().equals(EnumCoinType.REAL)) {
-                
-                System.out.println("Digite a opcao desejada");
-                System.out.println("1. deseja realizar o deposito?");
-                System.out.println("2. consultar saldo?");
-                System.out.println("3. gerar boleto?");
-                System.out.println("4. consultar dados do boleto?");
-                System.out.println("5. deseja realizar um saque?");
-                System.out.println("6. encerrar operacoes na conta");
-            }
-
-            System.out.println("\noptions in English\n");
-
-            System.out.println("Enter the desired option");
-            System.out.println("1. Do you want to make the deposit?");
-            System.out.println("2. check balance?");
-            System.out.println("3. generate bank slip?");
-            System.out.println("4. consult bank slip data?");
-            System.out.println("5. make a withdrawal?");
-            System.out.println("6. close account operations?");
-
-            String incoming = input.nextLine();
-            option = Integer.parseInt(incoming);
-
-            if (option >= 0 && option <= 7) {
-                validEntry = true;
-            } else {
-                System.out.println("entrada invalida escolha um numero de 1 a 6 \n");
-                System.out.println("invalid entry choose a number from 1 to 6 \n");
-            }
-        }
-        return option;
-    }
-
     public void showAccountData(CustomerAccount account) {
         account.toString();
     }

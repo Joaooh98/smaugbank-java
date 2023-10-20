@@ -16,12 +16,14 @@ import domain.ienum.EnumCoinType;
 import infra.factory.BankFactory;
 import usecase.LoginUseCase;
 import usecase.OperationsAccountUseCase;
+import usecase.ShowOperationsUseCase;
 
 @SuppressWarnings("all")
 public class AccountController {
     public static void main(String[] args) throws Exception {
         var operations = new OperationsAccountUseCase();
         var loginUseCase = new LoginUseCase();
+        var OperationsUseCase = new ShowOperationsUseCase();
         Scanner input = new Scanner(System.in);
         System.out.println("Digite seu nome: ");
         String name = input.nextLine();
@@ -48,7 +50,7 @@ public class AccountController {
         loginUseCase.loginAccount(account);
 
 
-        int opcao = operations.showOperations(input, account);
+        int opcao = OperationsUseCase.showOperations(account);
 
         while (opcao != 6) {
             switch (opcao) {
