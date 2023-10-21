@@ -16,20 +16,34 @@ public class ShowOperationsUseCase {
 
             if (account.getCoitType().equals(EnumCoinType.REAL)) {
 
-                String incoming = JOptionPane.showInputDialog(
-                        "Digite a opção desejada:\n1. Deseja realizar um depósito?\n2. Consultar saldo?\n3. Gerar boleto?\n4. Consultar dados do boleto?\n5. Deseja realizar um saque?\n6. Encerrar operações na conta");
-                        option = Integer.parseInt(incoming);
-            }
+                String[] optionsInPortugues = {
+                        "Digite a opção desejada",
+                        "1. Deseja realizar um depósito?",
+                        "2. Consultar saldo?",
+                        "3. Gerar boleto?",
+                        "4. Consultar dados do boleto?",
+                        "5. Deseja realizar um saque?",
+                        "6. Encerrar operações na conta?" };
 
-            System.out.println("\noptions in English\n");
-            System.out.println("Enter the desired option");
-            System.out.println("1. Do you want to make the deposit?");
-            System.out.println("2. check balance?");
-            System.out.println("3. generate bank slip?");
-            System.out.println("4. consult bank slip data?");
-            System.out.println("5. make a withdrawal?");
-            System.out.println("6. close account operations?");
-            
+                String incoming = JOptionPane.showInputDialog(optionsInPortugues);
+                option = Integer.parseInt(incoming);
+
+            } else {
+                
+
+                String[] optionsInEnglish = {
+                        "Enter the desired option",
+                        "1. Do you want to make the deposit?",
+                        "2. Check balance?",
+                        "3. Generate bank slip?",
+                        "4. Consult bank slip data?",
+                        "5. Make a withdrawal?",
+                        "6. Close account operations?"
+                };
+
+                String incoming = JOptionPane.showInputDialog(optionsInEnglish);
+                option = Integer.parseInt(incoming);
+            }
 
             if (option >= 0 && option <= 7) {
                 validEntry = true;
