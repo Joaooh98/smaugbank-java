@@ -41,13 +41,9 @@ public class AccountController {
 
         EnumCoinType coinType = optionsCoins.showOptionsCoins();
 
-        System.out.println("escolha um banco\n");
-
         EnumBank bank = optionsBank.showOptionsBanks(coinType);
-        
-        CustomerAccount account = BankFactory.createAccountCustumer(coinType, customer, null);
 
-        System.out.println("conta criada com sucesso");
+        CustomerAccount account = BankFactory.createAccountCustumer(coinType, customer, bank);
 
         loginUseCase.loginAccount(account);
 
@@ -77,6 +73,7 @@ public class AccountController {
             }
         }
         System.out.println("Programa encerrado");
+
     }
 }
 

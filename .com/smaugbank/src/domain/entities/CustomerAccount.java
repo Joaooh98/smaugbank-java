@@ -156,4 +156,11 @@ public class CustomerAccount {
         this.currentBalance = currentBalance;
     }
 
+    @Override
+    public String toString() {
+        return "Account holder: " + customer + "\n agency: " + agency + "\n account: " + account + "\n user: "
+                + userClient + "\n password: " + passwordClient + "\n bank: " + bank + "\n coitType: " + coitType
+                + "\n Balance: " + currentBalance + "";
+    }
+    
 }

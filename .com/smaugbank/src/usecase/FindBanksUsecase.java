@@ -18,16 +18,14 @@ public class FindBanksUsecase {
         
         String incoming = JOptionPane.showInputDialog("Escolha um banco\n" + optionsCoins);
 
-        Integer opcao = Integer.parseInt(incoming);
+        int opcao = Integer.parseInt(incoming);
 
         for (EnumBank enumBank : list) {
             if (enumBank.getId().equals(opcao)) {
                 return enumBank;
-            } else {
-                JOptionPane.showMessageDialog(null, "Opção inválida", "atencao!", JOptionPane.INFORMATION_MESSAGE);
-                JOptionPane.showMessageDialog(null, "Invalid option", "attention!", JOptionPane.INFORMATION_MESSAGE);
             }
         }
+        JOptionPane.showMessageDialog(null, "Opção inválida", "atencao!", JOptionPane.INFORMATION_MESSAGE);
         return null;
     }
 }

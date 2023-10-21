@@ -2,6 +2,8 @@ package usecase;
 
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 import domain.entities.CustomerAccount;
 
 public class LoginUseCase {
@@ -11,21 +13,22 @@ public class LoginUseCase {
             boolean authorized = false;
 
             while (!authorized) {
+                String userCli = JOptionPane.showInputDialog("Qual é o seu usuário:");
 
-                System.out.print("Qual é o seu usuário: ");
-                String userCli = loginInput.nextLine();
                 if (userCli.equals(account.getUserClient())) {
-                    System.out.print("Qual é a sua senha: ");
-                    String password = loginInput.nextLine();
+                    String password = JOptionPane.showInputDialog("Qual é a sua senha: ");
 
                     if (password.equals(account.getPasswordClient())) {
                         authorized = true;
-                        System.out.println("Logado com sucesso!\n");
+                        JOptionPane.showMessageDialog(null, "Logado com sucesso!\n", "LOGIN",
+                                JOptionPane.INFORMATION_MESSAGE);
                     } else {
-                        System.out.println("Senha incorreta, tente novamente!");
+                        JOptionPane.showMessageDialog(null, "Senha incorreta, tente novamente!\n", "LOGIN",
+                                JOptionPane.INFORMATION_MESSAGE);
                     }
                 } else {
-                    System.out.println("Usuário incorreto, tente novamente!");
+                    JOptionPane.showMessageDialog(null, "Usuário incorreto, tente novamente!\n", "LOGIN",
+                            JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         }
