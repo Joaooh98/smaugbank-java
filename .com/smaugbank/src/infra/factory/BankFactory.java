@@ -7,7 +7,7 @@ import domain.ienum.EnumCoinType;
 import usecase.CreatedNationAccountUseCase;
 
 public class BankFactory {
-    public static CustomerAccount findBank(EnumCoinType coin, Customer customer, EnumBank bank) {
+    public static CustomerAccount createAccountCustumer(EnumCoinType coin, Customer customer, EnumBank bank) {
         switch (coin) {
             case EUR:
                 return new CreatedNationAccountUseCase()

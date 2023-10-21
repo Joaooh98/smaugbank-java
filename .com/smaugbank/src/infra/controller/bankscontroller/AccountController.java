@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 import domain.Repository.CustomerRepository;
 import domain.Repository.RepositoryEnumAmerica;
 import domain.Repository.RepositoryEnumBrazil;
@@ -16,6 +18,8 @@ import domain.ienum.EnumCoinType;
 import infra.factory.BankFactory;
 import usecase.LoginUseCase;
 import usecase.OperationsAccountUseCase;
+import usecase.OptionsBankUsecase;
+import usecase.OptionsCoinsUsecase;
 import usecase.ShowOperationsUseCase;
 
 @SuppressWarnings("all")
@@ -23,39 +27,36 @@ public class AccountController {
     public static void main(String[] args) throws Exception {
         var operations = new OperationsAccountUseCase();
         var loginUseCase = new LoginUseCase();
-        var OperationsUseCase = new ShowOperationsUseCase();
-        Scanner input = new Scanner(System.in);
-        System.out.println("Digite seu nome: ");
-        String name = input.nextLine();
-        System.out.println("Informe um usuario: ");
-        String user = input.nextLine();
-        System.out.println("escolha uma senha: ");
-        String password = input.nextLine();
+        var operationsUseCase = new ShowOperationsUseCase();
+        var optionsCoins = new OptionsCoinsUsecase();
+        var optionsBank = new OptionsBankUsecase();
+
+        String name = JOptionPane.showInputDialog("Digite seu nome");
+        String user = JOptionPane.showInputDialog("Informe um usuario");
+        String password = JOptionPane.showInputDialog("Escolha uma senha");
 
         var customerRepository = new CustomerRepository();
         customerRepository.addCustumer(name, user, password);
         var customer = customerRepository.getCustomers();
 
-        System.out.println("em qual moeda deseja abrir a conta\n");
-
-        EnumCoinType coinType = operations.showOptionsCoins(input);
+        EnumCoinType coinType = optionsCoins.showOptionsCoins();
 
         System.out.println("escolha um banco\n");
 
-        EnumBank bank = operations.showOptionsBanks(coinType, input);
-        CustomerAccount account = BankFactory.findBank(coinType, customer, bank);
+        EnumBank bank = optionsBank.showOptionsBanks(coinType);
+        
+        CustomerAccount account = BankFactory.createAccountCustumer(coinType, customer, null);
 
         System.out.println("conta criada com sucesso");
-        
+
         loginUseCase.loginAccount(account);
 
-
-        int opcao = OperationsUseCase.showOperations(account);
+        int opcao = operationsUseCase.showOperations(account);
 
         while (opcao != 6) {
             switch (opcao) {
                 case 1:
-                    BigDecimal depositAmount = operations.createdDeposit(account, input);
+                    BigDecimal depositAmount = operations.createdDeposit(account, null);
                     System.out.println("valor depositado :" + depositAmount);
                     break;
                 case 2:
@@ -63,7 +64,7 @@ public class AccountController {
                     System.out.println("seu saldo atual e:" + balance + " " + account.getCoitType().getValue());
                     break;
                 case 3:
-                    operations.createdBankSlip(account, input);
+                    operations.createdBankSlip(account, null);
                     break;
                 case 4:
                     operations.consultBankSlip(null);
