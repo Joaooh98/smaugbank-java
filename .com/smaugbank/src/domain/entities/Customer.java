@@ -126,7 +126,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "" + name + "\n"+"CPF: "+document;
+        return name + "\n"+"CPF: "+document;
     }
 
 }

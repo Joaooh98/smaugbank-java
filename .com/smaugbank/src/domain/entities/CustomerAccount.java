@@ -158,9 +158,9 @@ public class CustomerAccount {
 
     @Override
     public String toString() {
-        return "Account holder: " + customer + "\n agency: " + agency + "\n account: " + account + "\n user: "
-                + userClient + "\n password: " + passwordClient + "\n bank: " + bank + "\n coitType: " + coitType
-                + "\n Balance: " + currentBalance + "";
+        return "ACCOUNT HOLDER: " + customer + "\n AGENCY: " + agency + "\n ACCOUNT: " + account + "\n USER: "
+                + userClient + "\n PASSWORD: " + passwordClient + "\n BANK: " + bank + "\n COIN: " + coitType
+                + "\n BALANCE: " + currentBalance + "";
     }
     
 }

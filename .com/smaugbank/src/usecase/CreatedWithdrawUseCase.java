@@ -25,7 +25,7 @@ public class CreatedWithdrawUseCase {
         if (validateMovimentBalance(customerAccount, valorBigDecimal)) {
             String checking = checking(withdraw);
             JOptionPane.showMessageDialog(null,checking+
-                    "\nPor favor retire seu deinheiro: R$ " + customerAccount.getCurrentBalance(),
+                    "\nPor favor retire seu deinheiro: R$ " + valorBigDecimal,
                     "SAQUE REALIZADO", JOptionPane.INFORMATION_MESSAGE);
                     
             return withdraw;
@@ -41,7 +41,7 @@ public class CreatedWithdrawUseCase {
 
     private static boolean validateMovimentBalance(CustomerAccount account, BigDecimal amount) {
 
-        if ((account.getCurrentBalance().compareTo(BigDecimal.ZERO) >= 0)) {
+        if ((account.getCurrentBalance().compareTo(BigDecimal.ZERO) == 0)) {
             JOptionPane.showMessageDialog(null, "Voce nao possui Saldo!",
                     "ATENÇÃO",
                     JOptionPane.INFORMATION_MESSAGE);

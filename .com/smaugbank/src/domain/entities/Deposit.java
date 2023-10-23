@@ -72,7 +72,7 @@ public class Deposit {
 
     @Override
     public String toString() {
-        return "amount: r$ " + amount + "\n date: " + DateUtil.formatLocalDate(dateOfPayment) + "\n customer Account\n" + "name: "+ customerAccount.getCustomer().getName()
+        return "\n date: " + DateUtil.formatLocalDate(dateOfPayment) + "\n customer Account\n" + "name: "+ customerAccount.getCustomer().getName()
                 + "\n"+"document: "+customerAccount.getCustomer().getDocument();
     }
 }

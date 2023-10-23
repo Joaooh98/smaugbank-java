@@ -18,7 +18,7 @@ public class OptionsCoinsUsecase {
             optionsCoins = optionsCoins.append(i + " " + currency+"\n");
         }
 
-        String incoming = JOptionPane.showInputDialog("Qual moeda deseja abrir a conta\n"+optionsCoins);
+        String incoming = JOptionPane.showInputDialog(null, "Qual moeda deseja abrir a conta\n"+optionsCoins,"COIN", JOptionPane.QUESTION_MESSAGE);
 
         Integer opcao = Integer.parseInt(incoming);
         EnumCoinType coinType;

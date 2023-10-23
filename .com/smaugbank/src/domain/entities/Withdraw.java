@@ -71,8 +71,8 @@ public class Withdraw {
 
     @Override
     public String toString() {
-        return "amount: " + amount + "\n date: " + DateUtil.formatLocalDate(dateWithdraw)+ "\n customer Account\n" + "name: "+ customerAccount.getCustomer().getName()
-                + "\n"+"document: "+customerAccount.getCustomer().getDocument();
+        return "DATE: " + DateUtil.formatLocalDate(dateWithdraw)+ "\n CUSTOMER ACCOUNT\n" + "NAME: "+ customerAccount.getCustomer().getName()
+                + "\n"+"CPF: "+customerAccount.getCustomer().getDocument();
     }
 
 }
