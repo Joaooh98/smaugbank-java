@@ -39,4 +39,9 @@ public class DateUtil {
     public static LocalDateTime addDays(LocalDateTime dateTime, int days) {
         return dateTime.plusDays(days);
     }
+
+    public static String formatLocalDate(LocalDateTime localDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return localDate.format(formatter);
+    }
 }

@@ -13,10 +13,12 @@ public class FindBanksUsecase {
 
         for (int i = 0; i < list.size(); i++) {
             var banks = list.get(i).getKey();
-            optionsCoins = optionsCoins.append(i + " " + banks + "\n");
+            list.get(i).setId(i);
+            int id = list.get(i).getId();
+            optionsCoins = optionsCoins.append(id + " " + banks + "\n");
         }
         
-        String incoming = JOptionPane.showInputDialog("Escolha um banco\n" + optionsCoins);
+        String incoming = JOptionPane.showInputDialog(null, optionsCoins,"Escolha um banco" ,JOptionPane.QUESTION_MESSAGE);
 
         int opcao = Integer.parseInt(incoming);
 

@@ -1,64 +1,48 @@
 package domain.entities;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
-import domain.CreatedVO;
+import domain.utils.DateUtil;
 
 public class Withdraw {
 
-    private Integer id;
-
     private BigDecimal amount;
 
-    private CreatedVO dateWithdraw;
+    private LocalDateTime dateWithdraw;
 
     private CustomerAccount customerAccount;
 
-    private Withdraw(Integer id, BigDecimal amount, CreatedVO dateWithdraw, CustomerAccount customerAccount) {
-        this.id = id;
+    private Withdraw(BigDecimal amount, LocalDateTime dateWithdraw, CustomerAccount customerAccount) {
         this.amount = amount;
         this.dateWithdraw = dateWithdraw;
         this.customerAccount = customerAccount;
     }
 
-    public static class DepositBuilder {
-        private Integer id;
+    public static class WithdrawBuilder {
         private BigDecimal amount;
-        private CreatedVO dateWithdraw;
+        private LocalDateTime dateWithdraw;
         private CustomerAccount customerAccount;
 
-        public DepositBuilder id(Integer id) {
-            this.id = id;
-            return this;
-        }
-
-        public DepositBuilder amount(BigDecimal amount) {
+        public WithdrawBuilder amount(BigDecimal amount) {
             this.amount = amount;
             return this;
         }
 
-        public DepositBuilder dateWithdraw(CreatedVO dateWithdraw) {
+        public WithdrawBuilder dateWithdraw(LocalDateTime dateWithdraw) {
             this.dateWithdraw = dateWithdraw;
             return this;
         }
 
-        public DepositBuilder customerAccount(CustomerAccount customerAccount) {
+        public WithdrawBuilder customerAccount(CustomerAccount customerAccount) {
             this.customerAccount = customerAccount;
             return this;
         }
 
         public Withdraw build() {
-            var withdraw = new Withdraw(id, amount, dateWithdraw, customerAccount);
+            var withdraw = new Withdraw(amount, dateWithdraw, customerAccount);
             return withdraw;
         }
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public BigDecimal getAmount() {
@@ -69,11 +53,11 @@ public class Withdraw {
         this.amount = amount;
     }
 
-    public CreatedVO getDateWithdraw() {
+    public LocalDateTime getDateWithdraw() {
         return dateWithdraw;
     }
 
-    public void setDateWithdraw(CreatedVO dateWithdraw) {
+    public void setDateWithdraw(LocalDateTime dateWithdraw) {
         this.dateWithdraw = dateWithdraw;
     }
 
@@ -87,8 +71,8 @@ public class Withdraw {
 
     @Override
     public String toString() {
-        return "Withdraw [id=" + id + ", amount=" + amount + ", dateWithdraw=" + dateWithdraw + ", customerAccount="
-                + customerAccount + "]";
+        return "amount: " + amount + "\n date: " + DateUtil.formatLocalDate(dateWithdraw)+ "\n customer Account\n" + "name: "+ customerAccount.getCustomer().getName()
+                + "\n"+"document: "+customerAccount.getCustomer().getDocument();
     }
 
 }

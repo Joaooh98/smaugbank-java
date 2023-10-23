@@ -6,6 +6,34 @@
     "configurations": [
         {
             "type": "java",
+            "name": "NumericKeyboardSwing",
+            "request": "launch",
+            "mainClass": "usecase.NumericKeyboardSwing",
+            "projectName": "smaugbank-java_dfaa393e"
+        },
+        {
+            "type": "java",
+            "name": "test",
+            "request": "launch",
+            "mainClass": "usecase.test",
+            "projectName": "smaugbank-java_dfaa393e"
+        },
+        {
+            "type": "java",
+            "name": "tes",
+            "request": "launch",
+            "mainClass": "infra.tes",
+            "projectName": "smaugbank-java_dfaa393e"
+        },
+        {
+            "type": "java",
+            "name": "AccountController",
+            "request": "launch",
+            "mainClass": "infra.controller.bankscontroller.AccountController",
+            "projectName": "smaugbank-java_dfaa393e"
+        },
+        {
+            "type": "java",
             "name": "AccountController",
             "request": "launch",
             "mainClass": "infra.controller.bankscontroller.AccountController",

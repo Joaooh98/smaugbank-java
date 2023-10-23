@@ -1,23 +1,16 @@
 package infra.controller.bankscontroller;
 
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.Scanner;
-
 import javax.swing.JOptionPane;
 
 import domain.Repository.CustomerRepository;
-import domain.Repository.RepositoryEnumAmerica;
-import domain.Repository.RepositoryEnumBrazil;
-import domain.Repository.RepositoryEnumCoinType;
-import domain.Repository.RepositoryEnumEuropa;
-import domain.entities.Customer;
 import domain.entities.CustomerAccount;
+import domain.entities.Deposit;
+import domain.entities.Withdraw;
 import domain.ienum.EnumBank;
 import domain.ienum.EnumCoinType;
 import infra.factory.BankFactory;
+import service.OperationsAccount;
 import usecase.LoginUseCase;
-import usecase.OperationsAccountUseCase;
 import usecase.OptionsBankUsecase;
 import usecase.OptionsCoinsUsecase;
 import usecase.ShowOperationsUseCase;
@@ -25,55 +18,54 @@ import usecase.ShowOperationsUseCase;
 @SuppressWarnings("all")
 public class AccountController {
     public static void main(String[] args) throws Exception {
-        var operations = new OperationsAccountUseCase();
+        var operationsAccount = new OperationsAccount();
         var loginUseCase = new LoginUseCase();
         var operationsUseCase = new ShowOperationsUseCase();
-        var optionsCoins = new OptionsCoinsUsecase();
-        var optionsBank = new OptionsBankUsecase();
+        var optionsCoinsUsecase = new OptionsCoinsUsecase();
+        var optionsBankUsecase = new OptionsBankUsecase();
 
-        String name = JOptionPane.showInputDialog("Digite seu nome");
-        String user = JOptionPane.showInputDialog("Informe um usuario");
-        String password = JOptionPane.showInputDialog("Escolha uma senha");
+        String name = JOptionPane.showInputDialog(null, "Digite seu nome", "customer", JOptionPane.QUESTION_MESSAGE);
+        String user = JOptionPane.showInputDialog(null, "Informe um usuario", "customer", JOptionPane.QUESTION_MESSAGE);
+        String password = JOptionPane.showInputDialog(null, "Escolha uma senha", "customer", JOptionPane.QUESTION_MESSAGE);
+        String document = JOptionPane.showInputDialog(null, "Informe o seu CPF", "customer", JOptionPane.QUESTION_MESSAGE);
 
         var customerRepository = new CustomerRepository();
-        customerRepository.addCustumer(name, user, password);
+        customerRepository.addCustumer(name, user, password, document);
         var customer = customerRepository.getCustomers();
 
-        EnumCoinType coinType = optionsCoins.showOptionsCoins();
+        EnumCoinType coinType = optionsCoinsUsecase.showOptionsCoins();
 
-        EnumBank bank = optionsBank.showOptionsBanks(coinType);
+        EnumBank bank = optionsBankUsecase.showOptionsBanks(coinType);
 
         CustomerAccount account = BankFactory.createAccountCustumer(coinType, customer, bank);
 
         loginUseCase.loginAccount(account);
 
-        int opcao = operationsUseCase.showOperations(account);
+        boolean validEntry = true;
 
-        while (opcao != 6) {
+        while (validEntry) {
+            int option = 0;
+            int opcao = operationsUseCase.showOperations(account);
             switch (opcao) {
                 case 1:
-                    BigDecimal depositAmount = operations.createdDeposit(account, null);
-                    System.out.println("valor depositado :" + depositAmount);
+                    validEntry = true;
+                    Deposit depositAmount = operationsAccount.createdDeposit(account);
                     break;
                 case 2:
-                    BigDecimal balance = operations.consultBalance(account);
-                    System.out.println("seu saldo atual e:" + balance + " " + account.getCoitType().getValue());
+                    validEntry = true;
+                    operationsAccount.consultBalance(account);
                     break;
                 case 3:
-                    operations.createdBankSlip(account, null);
-                    break;
-                case 4:
-                    operations.consultBankSlip(null);
-                    break;
-                case 5:
-                    operations.makeWithdrawal(null);
+                    validEntry = true;
+                    Withdraw makeWithdrawal = operationsAccount.makeWithdrawal(account);
                     break;
                 default:
+                    validEntry = false;
                     break;
             }
         }
-        System.out.println("Programa encerrado");
-
+        JOptionPane.showMessageDialog(null, "Programa Finalizado, obrigado por utilizar os servico da smaugBank",
+                "Adeus!", JOptionPane.INFORMATION_MESSAGE);
     }
 }
 

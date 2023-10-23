@@ -1,21 +1,19 @@
 package domain.entities;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
-import domain.CreatedVO;
+import domain.utils.DateUtil;
 
 public class Deposit {
 
-    private Integer id;
-
     private BigDecimal amount;
 
-    private CreatedVO dateOfPayment;
+    private LocalDateTime dateOfPayment;
 
     private CustomerAccount customerAccount;
 
-    private Deposit(Integer id, BigDecimal amount, CreatedVO dateOfPayment, CustomerAccount customerAccount) {
-        this.id = id;
+    private Deposit(BigDecimal amount, LocalDateTime dateOfPayment, CustomerAccount customerAccount) {
         this.amount = amount;
         this.dateOfPayment = dateOfPayment;
         this.customerAccount = customerAccount;
@@ -23,22 +21,16 @@ public class Deposit {
     }
 
     public static class DepositBuilder {
-        private Integer id;
         private BigDecimal amount;
-        private CreatedVO dateOfPayment;
+        private LocalDateTime dateOfPayment;
         private CustomerAccount customerAccount;
-
-        public DepositBuilder id(Integer id) {
-            this.id = id;
-            return this;
-        }
 
         public DepositBuilder amount(BigDecimal amount) {
             this.amount = amount;
             return this;
         }
 
-        public DepositBuilder dateOfPayment(CreatedVO dateOfPayment) {
+        public DepositBuilder dateOfPayment(LocalDateTime dateOfPayment) {
             this.dateOfPayment = dateOfPayment;
             return this;
         }
@@ -49,17 +41,9 @@ public class Deposit {
         }
 
         public Deposit build() {
-            var deposit = new Deposit(id, amount, dateOfPayment, customerAccount);
+            var deposit = new Deposit(amount, dateOfPayment, customerAccount);
             return deposit;
         }
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public BigDecimal getAmount() {
@@ -70,11 +54,11 @@ public class Deposit {
         this.amount = amount;
     }
 
-    public CreatedVO getDateOfPayment() {
+    public LocalDateTime getDateOfPayment() {
         return dateOfPayment;
     }
 
-    public void setDateOfPayment(CreatedVO dateOfPayment) {
+    public void setDateOfPayment(LocalDateTime dateOfPayment) {
         this.dateOfPayment = dateOfPayment;
     }
 
@@ -86,4 +70,9 @@ public class Deposit {
         this.customerAccount = customerAccount;
     }
 
+    @Override
+    public String toString() {
+        return "amount: r$ " + amount + "\n date: " + DateUtil.formatLocalDate(dateOfPayment) + "\n customer Account\n" + "name: "+ customerAccount.getCustomer().getName()
+                + "\n"+"document: "+customerAccount.getCustomer().getDocument();
+    }
 }

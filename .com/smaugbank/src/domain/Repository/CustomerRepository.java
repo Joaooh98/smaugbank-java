@@ -9,13 +9,14 @@ public class CustomerRepository {
 
     List<Customer> customers = new ArrayList<>();
 
-    public void addCustumer(String name, String user, String password){
+    public void addCustumer(String name, String user, String password, String document){
         Integer id = 1;
         var newCustomer = new Customer.CustomerBuilder()
         .Id(id)
         .name(name)
         .user(user)
         .password(password)
+        .document(document)
         .build();
 
         customers.add(newCustomer);
