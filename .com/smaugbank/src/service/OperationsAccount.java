@@ -23,7 +23,7 @@ public class OperationsAccount {
     public void consultBalance(CustomerAccount account) {
 
         JOptionPane.showMessageDialog(null,
-        "\nSaldo em conta: R$ " + account.getCurrentBalance(),
+        "\nSaldo em conta:  " +account.getCoitType().getValue()+" "+ account.getCurrentBalance(),
         "SALDO", JOptionPane.INFORMATION_MESSAGE);
     }
 
