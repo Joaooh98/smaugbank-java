@@ -3,7 +3,7 @@ package usecase;
 import javax.swing.JOptionPane;
 
 import domain.entities.CustomerAccount;
-import domain.ienum.EnumCoinType;
+import domain.enums.EnumCoinType;
 
 public class ShowOperationsUseCase {
 
@@ -42,8 +42,8 @@ public class ShowOperationsUseCase {
             if (option >= 0 && option <= 4) {
                 validEntry = true;
             } else {
-                JOptionPane.showMessageDialog(null, "entrada invalida escolha um numero de 1 a 6 \n",
-                        "Atencao!", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "entrada inválida escolha um numero de 1 a 6 \n",
+                        "Atenção!", JOptionPane.INFORMATION_MESSAGE);
             }
         }
         return option;

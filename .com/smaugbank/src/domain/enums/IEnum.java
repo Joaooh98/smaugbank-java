@@ -1,6 +1,6 @@
-package domain.ienum;
+package domain.enums;
 
-public interface Ienum {
+public interface IEnum {
 
     public String getKey();
 

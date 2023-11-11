@@ -1,4 +1,4 @@
-package domain.Repository;
+package domain.repository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -6,8 +6,8 @@ import java.util.List;
 
 import domain.entities.Customer;
 import domain.entities.CustomerAccount;
-import domain.ienum.EnumBank;
-import domain.ienum.EnumCoinType;
+import domain.enums.EnumBank;
+import domain.enums.EnumCoinType;
 
 public class CustomerAccountRepository {
 

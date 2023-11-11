@@ -4,11 +4,11 @@ import java.util.Random;
 
 import javax.swing.JOptionPane;
 
-import domain.Repository.CustomerAccountRepository;
 import domain.entities.Customer;
 import domain.entities.CustomerAccount;
-import domain.ienum.EnumBank;
-import domain.ienum.EnumCoinType;
+import domain.enums.EnumBank;
+import domain.enums.EnumCoinType;
+import domain.repository.CustomerAccountRepository;
 import domain.utils.EnumUtil;
 import service.CreatedAccount;
 

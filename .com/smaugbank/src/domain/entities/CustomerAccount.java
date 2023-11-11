@@ -2,8 +2,8 @@ package domain.entities;
 
 import java.math.BigDecimal;
 
-import domain.ienum.EnumBank;
-import domain.ienum.EnumCoinType;
+import domain.enums.EnumBank;
+import domain.enums.EnumCoinType;
 
 public class CustomerAccount {
 

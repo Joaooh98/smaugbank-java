@@ -1,4 +1,4 @@
-package domain.Repository;
+package domain.repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,20 +9,20 @@ public class CustomerRepository {
 
     List<Customer> customers = new ArrayList<>();
 
-    public void addCustumer(String name, String user, String password, String document){
+    public void addCustumer(String name, String user, String password, String document) {
         Integer id = 1;
         var newCustomer = new Customer.CustomerBuilder()
-        .Id(id)
-        .name(name)
-        .user(user)
-        .password(password)
-        .document(document)
-        .build();
+                .id(id)
+                .name(name)
+                .user(user)
+                .password(password)
+                .document(document)
+                .build();
 
         customers.add(newCustomer);
     }
 
-    public Customer getCustomers(){
+    public Customer getCustomers() {
         return customers.iterator().next();
     }
 }

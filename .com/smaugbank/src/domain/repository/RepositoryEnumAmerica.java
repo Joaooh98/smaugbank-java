@@ -1,9 +1,9 @@
-package domain.Repository;
+package domain.repository;
 
 import java.util.List;
 
-import domain.ienum.EnumBank;
-import domain.ienum.EnumCoinType;
+import domain.enums.EnumBank;
+import domain.enums.EnumCoinType;
 
 public class RepositoryEnumAmerica {
 

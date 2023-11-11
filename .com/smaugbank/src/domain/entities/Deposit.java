@@ -17,7 +17,6 @@ public class Deposit {
         this.amount = amount;
         this.dateOfPayment = dateOfPayment;
         this.customerAccount = customerAccount;
-
     }
 
     public static class DepositBuilder {

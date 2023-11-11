@@ -1,8 +1,8 @@
-package domain.ienum;
+package domain.enums;
 
 import domain.utils.EnumUtil;
 
-public enum EnumCoinType implements Ienum {
+public enum EnumCoinType implements IEnum {
 
     US("DOLLAR", "$"),
     EUR("EURO", "€"),

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import javax.swing.JOptionPane;
 
-import domain.Repository.WithdrawRepository;
+import domain.repository.WithdrawRepository;
 import domain.entities.CustomerAccount;
 import domain.entities.Withdraw;
 

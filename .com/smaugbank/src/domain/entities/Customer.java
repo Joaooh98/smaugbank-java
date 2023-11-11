@@ -4,7 +4,7 @@ import domain.utils.StringUtil;
 
 public class Customer {
 
-    private Integer Id;
+    private Integer id;
 
     private String document;
 
@@ -15,7 +15,7 @@ public class Customer {
     private String password;
 
     private Customer(Integer id, String document, String name, String user, String password) {
-        Id = id;
+        this.id = id;
         this.document = document;
         this.name = name;
         this.user = user;
@@ -23,14 +23,14 @@ public class Customer {
     }
 
     public static class CustomerBuilder {
-        private Integer Id;
+        private Integer id;
         private String document;
         private String name;
         private String user;
         private String password;
 
-        public CustomerBuilder Id(Integer Id) {
-            this.Id = Id;
+        public CustomerBuilder id(Integer id) {
+            this.id = id;
             return this;
         }
 
@@ -55,18 +55,20 @@ public class Customer {
         }
 
         public Customer build() {
-            var customer = new Customer(Id, document, name, user, password);
+            var customer = new Customer(id, document, name, user, password);
+
             validate(customer);
+            
             return customer;
         }
 
     }
 
-    public static Customer validate(Customer customer){
+    public static Customer validate(Customer customer) {
 
         if (StringUtil.isNullOrEmpty(customer.getDocument())) {
             throw new IllegalArgumentException("documento e obrigatorio");
-            
+
         }
 
         if (StringUtil.isNullOrEmpty(customer.getName())) {
@@ -80,24 +82,24 @@ public class Customer {
         if (StringUtil.isNullOrEmpty(customer.getPassword())) {
             throw new IllegalArgumentException("senha e obrigatorio");
         }
-        
+
         return customer;
     }
-
+    
     public Integer getId() {
-        return Id;
+        return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     public String getDocument() {
         return document;
     }
 
     public void setDocument(String document) {
         this.document = document;
-    }
-
-    public void setId(Integer id) {
-        Id = id;
     }
 
     public String getName() {

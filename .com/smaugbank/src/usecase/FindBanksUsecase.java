@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import domain.ienum.EnumBank;
+import domain.enums.EnumBank;
 
 public class FindBanksUsecase {
 
