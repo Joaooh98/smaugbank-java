@@ -1,6 +1,6 @@
 package domain.utils;
 
-import domain.ienum.Ienum;
+import domain.enums.IEnum;
 
 @SuppressWarnings("all")
 public class EnumUtil {
@@ -34,7 +34,7 @@ public class EnumUtil {
         return false;
     }
 
-    public static <T extends Ienum> T parseByKey(Class<T> enumValue, String key) {
+    public static <T extends IEnum> T parseByKey(Class<T> enumValue, String key) {
         try {
             if (key != null && !key.trim().isEmpty()) {
                 for (var value : enumValue.getEnumConstants()) {
@@ -50,7 +50,7 @@ public class EnumUtil {
         return null;
     }
 
-    public static <T extends Ienum> T parseByValue(Class<T> enumValue, String value) {
+    public static <T extends IEnum> T parseByValue(Class<T> enumValue, String value) {
         try {
             if (value != null && !value.trim().isEmpty()) {
                 for (var enumVal : enumValue.getEnumConstants()) {

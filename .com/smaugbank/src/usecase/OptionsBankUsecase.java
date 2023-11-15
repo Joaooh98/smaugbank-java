@@ -1,10 +1,10 @@
 package usecase;
 
-import domain.Repository.RepositoryEnumAmerica;
-import domain.Repository.RepositoryEnumBrazil;
-import domain.Repository.RepositoryEnumEuropa;
-import domain.ienum.EnumBank;
-import domain.ienum.EnumCoinType;
+import domain.repository.RepositoryEnumAmerica;
+import domain.repository.RepositoryEnumBrazil;
+import domain.repository.RepositoryEnumEuropa;
+import domain.enums.EnumBank;
+import domain.enums.EnumCoinType;
 
 @SuppressWarnings("all")
 public class OptionsBankUsecase {

@@ -1,4 +1,4 @@
-package domain.Repository;
+package domain.repository;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -14,12 +14,11 @@ public class DepositRepository {
 
     public void addDeposit(BigDecimal amount, CustomerAccount customerAccount) {
 
-        var Deposit = new Deposit
-        .DepositBuilder()
-        .amount(amount)
-        .dateOfPayment(LocalDateTime.now())
-        .customerAccount(customerAccount)
-        .build();
+        var Deposit = new Deposit.DepositBuilder()
+                .amount(amount)
+                .dateOfPayment(LocalDateTime.now())
+                .customerAccount(customerAccount)
+                .build();
 
         Deposits.add(Deposit);
     }

@@ -2,8 +2,8 @@ package infra.factory;
 
 import domain.entities.Customer;
 import domain.entities.CustomerAccount;
-import domain.ienum.EnumBank;
-import domain.ienum.EnumCoinType;
+import domain.enums.EnumBank;
+import domain.enums.EnumCoinType;
 import usecase.CreatedNationAccountUseCase;
 
 public class BankFactory {

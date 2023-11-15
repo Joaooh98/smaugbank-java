@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-import domain.Repository.RepositoryEnumCoinType;
-import domain.ienum.EnumCoinType;
+import domain.repository.RepositoryEnumCoinType;
+import domain.enums.EnumCoinType;
 
 @SuppressWarnings("all")
 public class OptionsCoinsUsecase {
@@ -15,10 +15,11 @@ public class OptionsCoinsUsecase {
 
         for (int i = 0; i < coinList.size(); i++) {
             var currency = coinList.get(i).getKey();
-            optionsCoins = optionsCoins.append(i + " " + currency+"\n");
+            optionsCoins = optionsCoins.append(i + " " + currency + "\n");
         }
 
-        String incoming = JOptionPane.showInputDialog(null, "Qual moeda deseja abrir a conta\n"+optionsCoins,"COIN", JOptionPane.QUESTION_MESSAGE);
+        String incoming = JOptionPane.showInputDialog(null, "Qual moeda deseja abrir a conta?\n" + optionsCoins, "COIN",
+                JOptionPane.QUESTION_MESSAGE);
 
         Integer opcao = Integer.parseInt(incoming);
         EnumCoinType coinType;

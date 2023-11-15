@@ -1,4 +1,4 @@
-package domain.Repository;
+package domain.repository;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -14,12 +14,11 @@ public class WithdrawRepository {
 
     public void addwithdraw(BigDecimal amount, CustomerAccount customerAccount) {
 
-        var withdraw = new Withdraw
-        .WithdrawBuilder()
-        .amount(amount)
-        .dateWithdraw(LocalDateTime.now())
-        .customerAccount(customerAccount)
-        .build();
+        var withdraw = new Withdraw.WithdrawBuilder()
+                .amount(amount)
+                .dateWithdraw(LocalDateTime.now())
+                .customerAccount(customerAccount)
+                .build();
 
         withdraws.add(withdraw);
     }

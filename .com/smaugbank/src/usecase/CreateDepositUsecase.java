@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import javax.swing.JOptionPane;
 
-import domain.Repository.DepositRepository;
+import domain.repository.DepositRepository;
 import domain.entities.CustomerAccount;
 import domain.entities.Deposit;
 

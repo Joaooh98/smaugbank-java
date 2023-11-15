@@ -2,12 +2,12 @@ package infra.controller.bankscontroller;
 
 import javax.swing.JOptionPane;
 
-import domain.Repository.CustomerRepository;
 import domain.entities.CustomerAccount;
 import domain.entities.Deposit;
 import domain.entities.Withdraw;
-import domain.ienum.EnumBank;
-import domain.ienum.EnumCoinType;
+import domain.enums.EnumBank;
+import domain.enums.EnumCoinType;
+import domain.repository.CustomerRepository;
 import infra.factory.BankFactory;
 import service.OperationsAccount;
 import usecase.LoginUseCase;
@@ -25,7 +25,7 @@ public class AccountController {
         var optionsBankUsecase = new OptionsBankUsecase();
 
         String name = JOptionPane.showInputDialog(null, "Digite seu nome", "customer", JOptionPane.QUESTION_MESSAGE);
-        String user = JOptionPane.showInputDialog(null, "Informe um usuario", "customer", JOptionPane.QUESTION_MESSAGE);
+        String user = JOptionPane.showInputDialog(null, "Insira seu apelido", "customer", JOptionPane.QUESTION_MESSAGE);
         String password = JOptionPane.showInputDialog(null, "Escolha uma senha", "customer", JOptionPane.QUESTION_MESSAGE);
         String document = JOptionPane.showInputDialog(null, "Informe o seu CPF", "customer", JOptionPane.QUESTION_MESSAGE);
 
@@ -64,7 +64,7 @@ public class AccountController {
                     break;
             }
         }
-        JOptionPane.showMessageDialog(null, "Programa Finalizado, obrigado por utilizar os servico da smaugBank",
+        JOptionPane.showMessageDialog(null, "Programa Finalizado, obrigado por utilizar os servico da smaugBank🐉",
                 "Adeus!", JOptionPane.INFORMATION_MESSAGE);
     }
 }

@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class DateUtil {
 
-    private static final String DATA_BASE = "1997-10-07";
+    private static final String BASE_DATE = "1997-10-07";
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     private static final ZoneId ZONE_BRAZIL = ZoneId.of("America/Sao_Paulo");
 
@@ -18,7 +18,7 @@ public class DateUtil {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         String format = formatter.format(dueDate);
-        Date dataBase = DATE_FORMAT.parse(DATA_BASE);
+        Date dataBase = DATE_FORMAT.parse(BASE_DATE);
         Date dataVenc = DATE_FORMAT.parse(format);
 
         long diferencaEmMillis = dataVenc.getTime() - dataBase.getTime();
